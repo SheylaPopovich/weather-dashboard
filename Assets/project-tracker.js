@@ -48,11 +48,20 @@ searchBtn.onclick = function() {
         desc.innerHTML = descValue;
         humidity.innerHTML = humidityValue;
         icon.innerHTML = iconValue;
+
+        var inputValHistory = inputValue.value
+        var citySearched = cityName
+        localStorage.setItem(citySearched, inputValHistory)
     })
     
 }
 
+$(".inputValue").each(function(){
+    const cityInput = city;
+    const cityHistory = localStorage.getItem(cityInput)
+}
 
+)
 
 
 
