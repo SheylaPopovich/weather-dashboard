@@ -1,3 +1,37 @@
-body {
-    background-color: navy;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero{
+    background-image: url(./images/photos-sky-during-different-weather-260nw-1899360634.jpg);
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bolder;
+ 
+}
+
+/* .section{
+    background-color: red;
+} */
+
+.container {
+    background-color: yellow;
+}
+
+.columns {
+    background-color: green;
+}
+
+.column {
+    background-color: grey;
 }
