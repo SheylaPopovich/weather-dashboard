@@ -8,6 +8,7 @@ var humidity = document.querySelector("#humidity");
 var icon = document.querySelector("#icon");
 var uvIndex = document.querySelector("#uvIndex");
 
+var savedList= document.querySelector("#savedList");
 
 //current day time and date
 var todaysDate = $("#currentDay");
@@ -23,9 +24,13 @@ var todaysDate = $("#currentDay");
         setInterval(update, 1000);
     }); 
          
+
+
+
+    //missing UV Index ---> index must show favorable, moderate or severe 
 searchBtn.onclick = function() {
-  
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' +inputValue.value+ '&appid=2f1cda6e44000ccd9b7f1f34fc6c638c')
+      fetch('http://api.openweathermap.org/data/2.5/weather?q=' +inputValue.value+ '&appid=2f1cda6e44000ccd9b7f1f34fc6c638c')
+      
     .then(response => response.json())
     .then(data => 
         // console.log(data))
@@ -35,7 +40,7 @@ searchBtn.onclick = function() {
         var tempKelvin = data["main"]["temp"];
         var descValue = data["weather"][0]["description"];
         var humidityValue = data["main"]["humidity"];
-        var iconValue = data["weather"][0]["icon"];
+       
 
         //convert Kelvin into Celsius
         var tempCelsius = tempKelvin - 273;
@@ -47,7 +52,7 @@ searchBtn.onclick = function() {
         temp.innerHTML = Fahrenheit+'°F';
         desc.innerHTML = descValue;
         humidity.innerHTML = humidityValue;
-        icon.innerHTML = iconValue;
+        
 
         var inputValHistory = inputValue.value
         var citySearched = cityName
@@ -56,12 +61,33 @@ searchBtn.onclick = function() {
     
 }
 
-$(".inputValue").each(function(){
-    const cityInput = city;
-    const cityHistory = localStorage.getItem(cityInput)
-}
-
-)
 
 
+// //added five day forecast from openweatherApp date, icon, the temp, the wind speed, and humidity. 
+// var day1 = document.querySelector("#day1")
 
+// searchBtn.onclick = function() {
+//     fetch('http://api.openweathermap.org/data/2.5/forecast?q=' +inputValue.value+ '&appid=2f1cda6e44000ccd9b7f1f34fc6c638c')
+    
+//   .then(response => response.json())
+//   .then(data =>  
+//     // console.log(data))
+
+//      {
+  
+//     var day1Temp = data["list"][0]["main"]["temp"];
+//           var day1Wind = data["list"][0]["wind"]["speed"];
+//           var day1Hum = data["list"][0]["main"]["humidity"];
+          
+//     day1.innerHTML = day1Temp + day1Wind + day1Hum;
+//   })
+//  }
+
+
+
+
+
+// localStorage.getItem to display search history in section
+// cityHistory = localStorage.getItem("citySearched")
+
+// savedList.innerText = "City History" + cityHistory
