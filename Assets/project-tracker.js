@@ -29,13 +29,17 @@ var todaysDate = $("#currentDay");
 
     //missing UV Index ---> index must show favorable, moderate or severe 
 searchBtn.onclick = function() {
+    //  e.preventDefault()
       fetch('http://api.openweathermap.org/data/2.5/weather?q=' +inputValue.value+ '&appid=2f1cda6e44000ccd9b7f1f34fc6c638c')
       
     .then(response => response.json())
-    .then(data => 
-        // console.log(data))
-        
-        {
+    .then(data =>  {
+      console.log(data)
+      console.log(data.weather[0].icon)
+       
+      var weatherIconUrl = "http://openweathermap.org/img/wn/" +
+      data.weather[0].icon + ".png"
+       
         var cityName = data["name"];
         var tempKelvin = data["main"]["temp"];
         var descValue = data["weather"][0]["description"];
@@ -52,11 +56,17 @@ searchBtn.onclick = function() {
         temp.innerHTML = Fahrenheit+'°F';
         desc.innerHTML = descValue;
         humidity.innerHTML = humidityValue;
+        var imageIcon = document.createElement('img')
+
+        imageIcon.src= weatherIconUrl
+
+        icon.append(imageIcon)
+        //  http://openweathermap.org/img/wn/
         
 
-        var inputValHistory = inputValue.value
-        var citySearched = cityName
-        localStorage.setItem(citySearched, inputValHistory)
+        // var inputValHistory = inputValue.value
+        // var citySearched = cityName
+        // localStorage.setItem(citySearched, inputValHistory)
     })
     
 }
