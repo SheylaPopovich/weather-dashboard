@@ -34,8 +34,9 @@ searchBtn.onclick = function() {
       
     .then(response => response.json())
     .then(data =>  {
-      console.log(data)
-      console.log(data.weather[0].icon)
+     icon.innerHTML= "" 
+    //   console.log(data)
+    //   console.log(data.weather[0].icon)
        
       var weatherIconUrl = "http://openweathermap.org/img/wn/" +
       data.weather[0].icon + ".png"
